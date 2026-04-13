@@ -334,6 +334,103 @@
       border-top: 1px solid var(--border);
       margin: 0;
     }
+
+    /* EXPERIENCE / EDUCATION */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+    .exp-item {
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 0;
+    }
+    .exp-item:last-child { border-bottom: 1px solid var(--border); }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .exp-role {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .exp-org {
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .exp-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .exp-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .exp-desc strong { color: var(--text); font-weight: 500; }
+
+    /* THESIS */
+    .thesis-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .thesis-meta span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+    }
+
+    .thesis-meta .key { color: var(--muted); }
+    .thesis-meta .val { color: var(--text); }
+
+    .thesis-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .thesis-note strong { color: var(--accent); }
+
+    .pdf-container {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .pdf-container iframe {
+      width: 100%;
+      height: 520px;
+      border: none;
+      display: block;
+    }
+
+    .pdf-fallback {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .pdf-fallback p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -346,6 +443,7 @@
       <a href="#about" data-i18n="nav_about">about</a>
       <a href="#stack">stack</a>
       <a href="#projects" data-i18n="nav_projects">projects</a>
+      <a href="#thesis" data-i18n="nav_thesis">thesis</a>
       <a href="#contact" data-i18n="nav_contact">contact</a>
       <button class="lang-btn" onclick="toggleLang()">es/en</button>
     </div>
@@ -358,10 +456,10 @@
     <div class="label">// init</div>
     <div class="hero-name">Oscar Painen</div>
     <div class="hero-role">
-      Data Analyst <span>/</span> ML <span>/</span> Automation
+      Ing. Civil Matemático <span>/</span> Data <span>/</span> ML <span>/</span> Automation
     </div>
     <p class="hero-desc" data-i18n="hero_desc">
-      Turning data into decisions. I build pipelines, automate processes and apply machine learning to real problems.
+      👋 Hi, I'm a Mathematical Engineer specialized in Data and Computing. I automate processes, apply machine learning and build data-driven solutions to real problems.
     </p>
     <div class="hero-links">
       <a href="https://github.com/OscarPainen" target="_blank" class="link-pill">github ↗</a>
@@ -398,15 +496,108 @@
   <div class="wrap">
     <div class="label">// about</div>
     <p class="about-text" data-i18n="about_p1">
-      Data Analyst at <strong>Universidad Católica de Temuco</strong>, working on energy consumption analysis and institutional process automation. I combine Python, CUDA and web scraping to build end-to-end data solutions.
+      Mathematical Civil Engineer specialized in Data and Computing. I graduated with <strong>Máxima Distinción</strong> presenting a thesis on <strong>Quantum Computing, Finance and Predictive Mathematical Models</strong>, while participating in ML and data analysis projects across university departments.
     </p>
     <p class="about-text" data-i18n="about_p2">
-      Background in <strong>Physics</strong> and <strong>Quantum Computing</strong> (ETH Zürich). IBM certified. I think in systems, build in code.
+      I've built data-driven solutions, AI-powered automation and analytical tools in academic and organizational contexts. Currently leading <strong>Smart Campus</strong> initiatives at Universidad Católica de Temuco — integrating IoT, PostgreSQL and multi-source data pipelines to improve institutional decision-making.
     </p>
+    <p class="about-text" data-i18n="about_p3">
+      I enjoy solving complex problems — the kind that keep you up at night. I think while walking. I've contributed to social volunteering projects across multiple countries, which sharpened my adaptability, teamwork and cross-cultural communication. I aspire to work at the intersection of <strong>technology, finance and social impact</strong>.
+    </p>
+
     <div class="meta-row">
       <div class="meta-item"><span class="key">location: </span><span class="val">Temuco, Chile 🇨🇱</span></div>
       <div class="meta-item"><span class="key">cert: </span><span class="val">IBM · ETH Zürich</span></div>
       <div class="meta-item"><span class="key">focus: </span><span class="val">data · ml · automation</span></div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="label" style="margin-top:2.5rem;">// experience</div>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role" data-i18n="exp1_role">Smart Campus Professional</div>
+            <div class="exp-org">Universidad Católica de Temuco</div>
+          </div>
+          <div class="exp-date">ago 2025 – present</div>
+        </div>
+        <p class="exp-desc" data-i18n="exp1_desc">Leading Smart Campus implementation across 50+ buildings in 7 university campuses. IoT integration, network automation, data analysis for resource optimization. API development and PostgreSQL database management.</p>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role" data-i18n="exp2_role">Information Security Engineer</div>
+            <div class="exp-org">Global Consultores Ingenieros · Remote</div>
+          </div>
+          <div class="exp-date">mar 2025 – present</div>
+        </div>
+        <p class="exp-desc" data-i18n="exp2_desc">Security consulting for enterprise clients. NIST CSF and ISO 27001 frameworks, vulnerability analysis and data protection policies. IBM certified in Guardium Data Protection and Verify Access.</p>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role" data-i18n="exp3_role">University Professor</div>
+            <div class="exp-org">Universidad de Aysén · Patagonia</div>
+          </div>
+          <div class="exp-date">ago – dic 2024</div>
+        </div>
+        <p class="exp-desc" data-i18n="exp3_desc">Teaching Data Mining, Python & LaTeX Programming, Calculus and Discrete Mathematics. Unique geographic and cultural context (Aysén, Patagonia).</p>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role" data-i18n="exp4_role">ML Intern — Neural Networks</div>
+            <div class="exp-org">E-Mining Technology · Remote</div>
+          </div>
+          <div class="exp-date">abr – may 2023</div>
+        </div>
+        <p class="exp-desc" data-i18n="exp4_desc">Image dataset construction for segmentation neural networks in the mining sector. U-Net architecture evaluation. Python, OpenCV, TensorFlow/PyTorch.</p>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role" data-i18n="exp5_role">Research Data Analyst</div>
+            <div class="exp-org">Universidad de La Frontera</div>
+          </div>
+          <div class="exp-date">jul – dic 2022</div>
+        </div>
+        <p class="exp-desc" data-i18n="exp5_desc">EDA and predictive model development (Neural Networks) for university research projects. Parallel to academic training.</p>
+      </div>
+
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="label" style="margin-top:2.5rem;">// education</div>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Ingeniería Civil Matemática</div>
+            <div class="exp-org">Universidad de La Frontera</div>
+          </div>
+          <div class="exp-date">2017 – 2024</div>
+        </div>
+        <p class="exp-desc" data-i18n="edu1_desc">Mathematical Modelling, Data Science and Computing. Graduated with <strong>Máxima Distinción</strong>. Thesis: Quantum Computing applied to Finance and Predictive Models.</p>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Parallel Programming — OpenMP & MPI</div>
+            <div class="exp-org">ETH Zürich · Online</div>
+          </div>
+          <div class="exp-date">mar – ago 2023</div>
+        </div>
+        <p class="exp-desc" data-i18n="edu2_desc">Mathematics and Computer Science. Full course in English. High-performance computing with OpenMP and MPI.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -538,6 +729,31 @@
   </div>
 </section>
 
+<!-- THESIS -->
+<section id="thesis">
+  <div class="wrap">
+    <div class="label">// thesis</div>
+    <div class="thesis-meta">
+      <span><span class="key">title: </span><span class="val" data-i18n="thesis_title">Quantum Computing applied to Finance and Predictive Mathematical Models</span></span>
+      <span><span class="key">institution: </span><span class="val">Universidad de La Frontera</span></span>
+      <span><span class="key">distinction: </span><span class="val" data-i18n="thesis_dist">Máxima Distinción</span></span>
+      <span><span class="key">year: </span><span class="val">2024</span></span>
+      <span><span class="key">topics: </span><span class="val">Quantum Computing · Finance · Predictive Models · Mathematics</span></span>
+    </div>
+    <p class="thesis-note" data-i18n="thesis_note">
+      To display the PDF here, upload your compiled <strong>thesis.pdf</strong> to this repository and replace the <code style="color:var(--accent);font-size:0.75rem;">YOUR_PDF_URL</code> below with the raw GitHub URL. Alternatively, link to a Google Drive or any public PDF host.
+    </p>
+    <div class="pdf-container">
+      <!-- Replace src with your actual PDF URL once uploaded to GitHub or Drive -->
+      <!-- Example: https://raw.githubusercontent.com/OscarPainen/OscarPainen.github.io/main/thesis.pdf -->
+      <div class="pdf-fallback">
+        <p data-i18n="thesis_placeholder">📄 Upload your thesis.pdf to this repo and update the src URL to display it here.</p>
+        <a href="#" class="link-pill" data-i18n="thesis_btn">↗ View PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
@@ -563,27 +779,53 @@
 <script>
   const i18n = {
     en: {
-      nav_about: 'about', nav_projects: 'projects', nav_contact: 'contact',
-      hero_desc: 'Turning data into decisions. I build pipelines, automate processes and apply machine learning to real problems.',
-      about_p1: 'Data Analyst at <strong>Universidad Católica de Temuco</strong>, working on energy consumption analysis and institutional process automation. I combine Python, CUDA and web scraping to build end-to-end data solutions.',
-      about_p2: 'Background in <strong>Physics</strong> and <strong>Quantum Computing</strong> (ETH Zürich). IBM certified. I think in systems, build in code.',
+      nav_about: 'about', nav_projects: 'projects', nav_thesis: 'thesis', nav_contact: 'contact',
+      hero_desc: '👋 Hi, I\'m a Mathematical Engineer specialized in Data and Computing. I automate processes, apply machine learning and build data-driven solutions to real problems.',
+      about_p1: 'Mathematical Civil Engineer specialized in Data and Computing. I graduated with <strong>Máxima Distinción</strong> presenting a thesis on <strong>Quantum Computing, Finance and Predictive Mathematical Models</strong>, while participating in ML and data analysis projects across university departments.',
+      about_p2: 'I\'ve built data-driven solutions, AI-powered automation and analytical tools in academic and organizational contexts. Currently leading <strong>Smart Campus</strong> initiatives at Universidad Católica de Temuco — integrating IoT, PostgreSQL and multi-source data pipelines to improve institutional decision-making.',
+      about_p3: 'I enjoy solving complex problems — the kind that keep you up at night. I think while walking. I\'ve contributed to social volunteering projects across multiple countries, which sharpened my adaptability, teamwork and cross-cultural communication. I aspire to work at the intersection of <strong>technology, finance and social impact</strong>.',
+      exp1_role: 'Smart Campus Professional', exp1_desc: 'Leading Smart Campus implementation across 50+ buildings in 7 university campuses. IoT integration, network automation, data analysis for resource optimization. API development and PostgreSQL database management.',
+      exp2_role: 'Information Security Engineer', exp2_desc: 'Security consulting for enterprise clients. NIST CSF and ISO 27001 frameworks, vulnerability analysis and data protection policies. IBM certified in Guardium Data Protection and Verify Access.',
+      exp3_role: 'University Professor', exp3_desc: 'Teaching Data Mining, Python & LaTeX Programming, Calculus and Discrete Mathematics. Unique geographic and cultural context (Aysén, Patagonia).',
+      exp4_role: 'ML Intern — Neural Networks', exp4_desc: 'Image dataset construction for segmentation neural networks in the mining sector. U-Net architecture evaluation. Python, OpenCV, TensorFlow/PyTorch.',
+      exp5_role: 'Research Data Analyst', exp5_desc: 'EDA and predictive model development (Neural Networks) for university research projects. Parallel to academic training.',
+      edu1_desc: 'Mathematical Modelling, Data Science and Computing. Graduated with <strong>Máxima Distinción</strong>. Thesis: Quantum Computing applied to Finance and Predictive Models.',
+      edu2_desc: 'Mathematics and Computer Science. Full course in English. High-performance computing with OpenMP and MPI.',
       p1_desc: 'Automated insurance quoter for 8 Chilean insurers. Selenium + Django REST API.',
       p2_desc: 'EDA on university energy consumption. Anomaly detection and smart meter validation.',
       p3_desc: 'PDF invoice extraction via Google Drive OCR + Apps Script. Zero manual entry.',
       p4_desc: 'Full-stack café management: POS, inventory, staff and real-time dashboard.',
       p5_desc: 'Classification, clustering and predictive modeling on real datasets.',
+      thesis_title: 'Quantum Computing applied to Finance and Predictive Mathematical Models',
+      thesis_dist: 'Máxima Distinción',
+      thesis_note: 'To display the PDF here, upload your compiled <strong>thesis.pdf</strong> to this repository and replace the <code style="color:var(--accent);font-size:0.75rem;">YOUR_PDF_URL</code> with the raw GitHub URL.',
+      thesis_placeholder: '📄 Upload your thesis.pdf to this repo and update the src URL to display it here.',
+      thesis_btn: '↗ View PDF',
       contact_p: 'Open to <strong>data analyst roles, remote work and collaborations</strong>. Reach out anytime.',
     },
     es: {
-      nav_about: 'sobre mí', nav_projects: 'proyectos', nav_contact: 'contacto',
-      hero_desc: 'Convirtiendo datos en decisiones. Construyo pipelines, automatizo procesos y aplico machine learning a problemas reales.',
-      about_p1: 'Analista de Datos en la <strong>Universidad Católica de Temuco</strong>, trabajando en análisis de consumo energético y automatización de procesos institucionales. Combino Python, CUDA y web scraping para construir soluciones de datos end-to-end.',
-      about_p2: 'Background en <strong>Física</strong> y <strong>Computación Cuántica</strong> (ETH Zürich). Certificado IBM. Pienso en sistemas, construyo en código.',
+      nav_about: 'sobre mí', nav_projects: 'proyectos', nav_thesis: 'tesis', nav_contact: 'contacto',
+      hero_desc: '👋 Hola, soy Ingeniero Matemático especializado en Data y Computación. Automatizo procesos, aplico machine learning y construyo soluciones basadas en datos a problemas reales.',
+      about_p1: 'Ingeniero Civil Matemático especializado en Data y Computación. Me gradué con <strong>Distinción Máxima</strong> presentando una tesis en <strong>Computación Cuántica, Finanzas y Modelos Matemáticos Predictivos</strong>, mientras participaba en proyectos de ML y análisis de datos en distintos departamentos universitarios.',
+      about_p2: 'He desarrollado soluciones basadas en datos, automatización con IA y herramientas analíticas en contextos académicos y organizacionales. Actualmente lidero iniciativas de <strong>Smart Campus</strong> en la Universidad Católica de Temuco — integrando IoT, PostgreSQL y pipelines de datos para mejorar la toma de decisiones institucional.',
+      about_p3: 'Disfruto resolver problemas complejos, de esos que no te dejan dormir. Me gusta pensar y meditar mientras camino. He participado en proyectos de voluntariado en distintos países, lo que fortaleció mi adaptabilidad, trabajo en equipo y comunicación intercultural. Aspiro a trabajar en la intersección de <strong>tecnología, finanzas e impacto social</strong>.',
+      exp1_role: 'Profesional Smart Campus', exp1_desc: 'Lidero la implementación de Smart Campus en más de 50 edificios distribuidos en 7 campus universitarios. Integración IoT, automatización de redes, análisis de datos para optimización de recursos. Desarrollo de API y gestión de bases de datos PostgreSQL.',
+      exp2_role: 'Ingeniero de Seguridad de Información', exp2_desc: 'Consultoría en seguridad de la información para empresas del sector. Marcos NIST CSF e ISO 27001, análisis de vulnerabilidades y diseño de políticas de protección de datos. Certificado IBM en Guardium Data Protection y Verify Access.',
+      exp3_role: 'Profesor Universitario', exp3_desc: 'Docencia en Minería de Datos, Taller de Programación en Python y LaTeX, Cálculo y Matemáticas Discretas. Contexto geográfico y cultural único (Aysén, Patagonia).',
+      exp4_role: 'Practicante ML — Redes Neuronales', exp4_desc: 'Construcción de dataset de imágenes para redes neuronales de segmentación aplicadas al sector minero. Evaluación de arquitectura U-Net. Python, OpenCV, TensorFlow/PyTorch.',
+      exp5_role: 'Analista de Datos — Investigación', exp5_desc: 'Análisis exploratorio de datos y desarrollo de modelos predictivos (Redes Neuronales) para proyectos de investigación universitaria. Trabajo paralelo a la formación académica.',
+      edu1_desc: 'Modelamiento Matemático, Data Science y Computación. Graduado con <strong>Distinción Máxima</strong>. Tesis: Computación Cuántica aplicada a Finanzas y Modelos Predictivos.',
+      edu2_desc: 'Matemáticas y Ciencias de la Computación. Curso completo en inglés. Computación de alto rendimiento con OpenMP y MPI.',
       p1_desc: 'Cotizador automatizado de seguros para 8 aseguradoras chilenas. Selenium + API REST Django.',
       p2_desc: 'EDA sobre consumo energético universitario. Detección de anomalías y validación de medidores.',
       p3_desc: 'Extracción de facturas PDF con OCR de Google Drive + Apps Script. Cero entrada manual.',
       p4_desc: 'Sistema de gestión para cafetería: POS, inventario, personal y dashboard en tiempo real.',
       p5_desc: 'Clasificación, clustering y modelado predictivo con datasets reales.',
+      thesis_title: 'Computación Cuántica aplicada a Finanzas y Modelos Matemáticos Predictivos',
+      thesis_dist: 'Distinción Máxima',
+      thesis_note: 'Para mostrar el PDF aquí, sube tu <strong>thesis.pdf</strong> compilado a este repositorio y reemplaza la URL con la dirección raw de GitHub.',
+      thesis_placeholder: '📄 Sube tu thesis.pdf al repo y actualiza la URL para mostrarlo aquí.',
+      thesis_btn: '↗ Ver PDF',
       contact_p: 'Abierto a <strong>roles de analista de datos, trabajo remoto y colaboraciones</strong>. Escríbeme cuando quieras.',
     }
   };
