@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oscar Painen</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Inter:wght@300;400;500&display=swap');
+
+    :root {
+      --bg: #0c0c0e;
+      --surface: #111116;
+      --border: #1c1c24;
+      --accent: #c8a96e;
+      --text: #d4d4d8;
+      --muted: #52525b;
+      --dim: #27272a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* GRID BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,169,110,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,169,110,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 100;
+      padding: 1.2rem 0;
+      background: rgba(12,12,14,0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .nav-right a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .nav-right a:hover { color: var(--text); }
+
+    .lang-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 0 60px;
+    }
+
+    section:first-of-type { padding-top: 140px; }
+
+    .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    /* HERO */
+    .hero-name {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-role span { opacity: 0.5; margin: 0 6px; }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .link-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .link-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* EQUATION STRIP */
+    .eq-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .eq-track {
+      display: flex;
+      gap: 4rem;
+      animation: slide 40s linear infinite;
+      white-space: nowrap;
+    }
+
+    .eq-track span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    .meta-row {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+    }
+
+    .meta-item .key { color: var(--muted); }
+    .meta-item .val { color: var(--accent); }
+
+    /* STACK */
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .tag:hover { color: var(--text); border-color: var(--dim); }
+
+    /* PROJECTS */
+    .project-list { display: flex; flex-direction: column; gap: 0; }
+
+    .project-item {
+      border-top: 1px solid var(--border);
+      padding: 1.4rem 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      cursor: default;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .project-item:last-child { border-bottom: 1px solid var(--border); }
+
+    .project-item:hover .project-expand {
+      max-height: 120px;
+      opacity: 1;
+      margin-top: 0.8rem;
+    }
+
+    .project-item:hover .project-name { color: var(--accent); }
+
+    .project-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      transition: color 0.2s;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .project-expand {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tech-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .tech-tag::before { content: '#'; margin-right: 2px; }
+
+    .project-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+      padding-top: 2px;
+    }
+    .project-link:hover { color: var(--accent); }
+
+    /* CONTACT */
+    .contact-line {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-line strong { color: var(--text); font-weight: 500; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    footer span.accent { color: var(--accent); }
+
+    hr.section-div {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <div class="nav-name">oscar.painen</div>
+    <div class="nav-right">
+      <a href="#about" data-i18n="nav_about">about</a>
+      <a href="#stack">stack</a>
+      <a href="#projects" data-i18n="nav_projects">projects</a>
+      <a href="#contact" data-i18n="nav_contact">contact</a>
+      <button class="lang-btn" onclick="toggleLang()">es/en</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="label">// init</div>
+    <div class="hero-name">Oscar Painen</div>
+    <div class="hero-role">
+      Data Analyst <span>/</span> ML <span>/</span> Automation
+    </div>
+    <p class="hero-desc" data-i18n="hero_desc">
+      Turning data into decisions. I build pipelines, automate processes and apply machine learning to real problems.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/OscarPainen" target="_blank" class="link-pill">github ↗</a>
+      <a href="https://www.linkedin.com/in/oscarpainenbriones/" target="_blank" class="link-pill">linkedin ↗</a>
+      <a href="mailto:oscar.painenbriones@gmail.com" class="link-pill">email ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- EQ STRIP -->
+<div class="eq-strip">
+  <div class="eq-track">
+    <span>∇L(θ) = −(1/n)Σ yᵢ log(ŷᵢ)</span>
+    <span>σ(z) = 1/(1+e⁻ᶻ)</span>
+    <span>P(A|B) = P(B|A)·P(A) / P(B)</span>
+    <span>K(x,x') = exp(−‖x−x'‖²/2σ²)</span>
+    <span>H(X) = −Σ p(x) log₂ p(x)</span>
+    <span>Ψ = α|0⟩ + β|1⟩</span>
+    <span>df.groupby('col').agg('mean')</span>
+    <span>model.fit(X_train, y_train)</span>
+    <span>∇L(θ) = −(1/n)Σ yᵢ log(ŷᵢ)</span>
+    <span>σ(z) = 1/(1+e⁻ᶻ)</span>
+    <span>P(A|B) = P(B|A)·P(A) / P(B)</span>
+    <span>K(x,x') = exp(−‖x−x'‖²/2σ²)</span>
+    <span>H(X) = −Σ p(x) log₂ p(x)</span>
+    <span>Ψ = α|0⟩ + β|1⟩</span>
+    <span>df.groupby('col').agg('mean')</span>
+    <span>model.fit(X_train, y_train)</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="label">// about</div>
+    <p class="about-text" data-i18n="about_p1">
+      Data Analyst at <strong>Universidad Católica de Temuco</strong>, working on energy consumption analysis and institutional process automation. I combine Python, CUDA and web scraping to build end-to-end data solutions.
+    </p>
+    <p class="about-text" data-i18n="about_p2">
+      Background in <strong>Physics</strong> and <strong>Quantum Computing</strong> (ETH Zürich). IBM certified. I think in systems, build in code.
+    </p>
+    <div class="meta-row">
+      <div class="meta-item"><span class="key">location: </span><span class="val">Temuco, Chile 🇨🇱</span></div>
+      <div class="meta-item"><span class="key">cert: </span><span class="val">IBM · ETH Zürich</span></div>
+      <div class="meta-item"><span class="key">focus: </span><span class="val">data · ml · automation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="wrap">
+    <div class="label">// stack</div>
+    <div class="stack-list">
+      <span class="tag">Python</span>
+      <span class="tag">scikit-learn</span>
+      <span class="tag">TensorFlow</span>
+      <span class="tag">PyTorch</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">NumPy</span>
+      <span class="tag">CUDA</span>
+      <span class="tag">SQL</span>
+      <span class="tag">PostgreSQL</span>
+      <span class="tag">Power BI</span>
+      <span class="tag">Looker Studio</span>
+      <span class="tag">Plotly</span>
+      <span class="tag">Selenium</span>
+      <span class="tag">OpenCV</span>
+      <span class="tag">EasyOCR</span>
+      <span class="tag">Django</span>
+      <span class="tag">React</span>
+      <span class="tag">Linux</span>
+      <span class="tag">Git</span>
+      <span class="tag">LaTeX</span>
+      <span class="tag">Apps Script</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="label">// projects</div>
+    <div class="project-list">
+
+      <div class="project-item">
+        <div>
+          <div class="project-name">GPTSeguros</div>
+          <div class="project-desc" data-i18n="p1_desc">Automated insurance quoter for 8 Chilean insurers. Selenium + Django REST API.</div>
+          <div class="project-expand">
+            <div class="project-tech">
+              <span class="tech-tag">selenium</span>
+              <span class="tech-tag">django</span>
+              <span class="tech-tag">python</span>
+              <span class="tech-tag">rest-api</span>
+              <span class="tech-tag">chromedriver</span>
+              <span class="tech-tag">dotenv</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://github.com/OscarPainen/GPTSeguros" target="_blank" class="project-link">↗ repo</a>
+      </div>
+
+      <div class="project-item">
+        <div>
+          <div class="project-name">Report-InvoiceProject</div>
+          <div class="project-desc" data-i18n="p2_desc">EDA on university energy consumption. Anomaly detection and smart meter validation.</div>
+          <div class="project-expand">
+            <div class="project-tech">
+              <span class="tech-tag">pandas</span>
+              <span class="tech-tag">plotly</span>
+              <span class="tech-tag">jupyter</span>
+              <span class="tech-tag">eda</span>
+              <span class="tech-tag">anomaly-detection</span>
+              <span class="tech-tag">iot</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://github.com/OscarPainen/Report-InvoiceProject" target="_blank" class="project-link">↗ repo</a>
+      </div>
+
+      <div class="project-item">
+        <div>
+          <div class="project-name">InvoiceProject</div>
+          <div class="project-desc" data-i18n="p3_desc">PDF invoice extraction via Google Drive OCR + Apps Script. Zero manual entry.</div>
+          <div class="project-expand">
+            <div class="project-tech">
+              <span class="tech-tag">apps-script</span>
+              <span class="tech-tag">drive-api</span>
+              <span class="tech-tag">ocr</span>
+              <span class="tech-tag">regex</span>
+              <span class="tech-tag">google-sheets</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://github.com/OscarPainen/InvoiceProject" target="_blank" class="project-link">↗ repo</a>
+      </div>
+
+      <div class="project-item">
+        <div>
+          <div class="project-name">Café Dinamarca</div>
+          <div class="project-desc" data-i18n="p4_desc">Full-stack café management: POS, inventory, staff and real-time dashboard.</div>
+          <div class="project-expand">
+            <div class="project-tech">
+              <span class="tech-tag">react</span>
+              <span class="tech-tag">tailwind</span>
+              <span class="tech-tag">recharts</span>
+              <span class="tech-tag">vite</span>
+              <span class="tech-tag">tanstack-query</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://github.com/OscarPainen/cafedinamarca" target="_blank" class="project-link">↗ repo</a>
+      </div>
+
+      <div class="project-item">
+        <div>
+          <div class="project-name">Minería de Datos IF1018</div>
+          <div class="project-desc" data-i18n="p5_desc">Classification, clustering and predictive modeling on real datasets.</div>
+          <div class="project-expand">
+            <div class="project-tech">
+              <span class="tech-tag">scikit-learn</span>
+              <span class="tech-tag">python</span>
+              <span class="tech-tag">jupyter</span>
+              <span class="tech-tag">clustering</span>
+              <span class="tech-tag">cross-validation</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://github.com/OscarPainen/Mineria-de-Datos-IF1018" target="_blank" class="project-link">↗ repo</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="label">// contact</div>
+    <p class="contact-line" data-i18n="contact_p">
+      Open to <strong data-i18n="contact_roles">data analyst roles, remote work and collaborations</strong>. Reach out anytime.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:oscar.painenbriones@gmail.com" class="link-pill">oscar.painenbriones@gmail.com ↗</a>
+      <a href="https://www.linkedin.com/in/oscarpainenbriones/" target="_blank" class="link-pill">linkedin ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <span>oscar painen · temuco, chile</span>
+    <span class="accent">2025</span>
+  </div>
+</footer>
+
+<script>
+  const i18n = {
+    en: {
+      nav_about: 'about', nav_projects: 'projects', nav_contact: 'contact',
+      hero_desc: 'Turning data into decisions. I build pipelines, automate processes and apply machine learning to real problems.',
+      about_p1: 'Data Analyst at <strong>Universidad Católica de Temuco</strong>, working on energy consumption analysis and institutional process automation. I combine Python, CUDA and web scraping to build end-to-end data solutions.',
+      about_p2: 'Background in <strong>Physics</strong> and <strong>Quantum Computing</strong> (ETH Zürich). IBM certified. I think in systems, build in code.',
+      p1_desc: 'Automated insurance quoter for 8 Chilean insurers. Selenium + Django REST API.',
+      p2_desc: 'EDA on university energy consumption. Anomaly detection and smart meter validation.',
+      p3_desc: 'PDF invoice extraction via Google Drive OCR + Apps Script. Zero manual entry.',
+      p4_desc: 'Full-stack café management: POS, inventory, staff and real-time dashboard.',
+      p5_desc: 'Classification, clustering and predictive modeling on real datasets.',
+      contact_p: 'Open to <strong>data analyst roles, remote work and collaborations</strong>. Reach out anytime.',
+    },
+    es: {
+      nav_about: 'sobre mí', nav_projects: 'proyectos', nav_contact: 'contacto',
+      hero_desc: 'Convirtiendo datos en decisiones. Construyo pipelines, automatizo procesos y aplico machine learning a problemas reales.',
+      about_p1: 'Analista de Datos en la <strong>Universidad Católica de Temuco</strong>, trabajando en análisis de consumo energético y automatización de procesos institucionales. Combino Python, CUDA y web scraping para construir soluciones de datos end-to-end.',
+      about_p2: 'Background en <strong>Física</strong> y <strong>Computación Cuántica</strong> (ETH Zürich). Certificado IBM. Pienso en sistemas, construyo en código.',
+      p1_desc: 'Cotizador automatizado de seguros para 8 aseguradoras chilenas. Selenium + API REST Django.',
+      p2_desc: 'EDA sobre consumo energético universitario. Detección de anomalías y validación de medidores.',
+      p3_desc: 'Extracción de facturas PDF con OCR de Google Drive + Apps Script. Cero entrada manual.',
+      p4_desc: 'Sistema de gestión para cafetería: POS, inventario, personal y dashboard en tiempo real.',
+      p5_desc: 'Clasificación, clustering y modelado predictivo con datasets reales.',
+      contact_p: 'Abierto a <strong>roles de analista de datos, trabajo remoto y colaboraciones</strong>. Escríbeme cuando quieras.',
+    }
+  };
+
+  let lang = (navigator.language || 'en').startsWith('es') ? 'es' : 'en';
+
+  function applyLang(l) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (i18n[l][k] !== undefined) el.innerHTML = i18n[l][k];
+    });
+  }
+
+  function toggleLang() {
+    lang = lang === 'en' ? 'es' : 'en';
+    applyLang(lang);
+  }
+
+  applyLang(lang);
+</script>
+</body>
+</html>
