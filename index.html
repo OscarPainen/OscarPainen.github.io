@@ -4,10 +4,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oscar Painen</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  <title>Oscar Painen — Ing. Civil Matemático · Data · ML · Automation</title>
+  <meta name="description"
+    content="Mathematical Civil Engineer specialized in Data and Computing. Machine learning, process automation and data-driven solutions. Temuco, Chile." />
+  <meta name="theme-color" content="#0a0a0c" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Oscar Painen — Data · ML · Automation" />
+  <meta property="og:description"
+    content="Mathematical Civil Engineer. Machine learning, automation and data-driven solutions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="es_CL" />
 
+  <!-- Fonts: <link> con preconnect en vez de @import (no bloquea el render) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
     :root {
       --bg: #0a0a0c;
       --surface: #111116;
@@ -20,6 +36,7 @@
       --text-soft: #b8b8c0;
       --muted: #7a7a85;
       --dim: #3a3a44;
+      --nav-h: 64px;
     }
 
     * {
@@ -40,6 +57,33 @@
       line-height: 1.7;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Foco visible para navegación por teclado */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* Skip link (accesibilidad) */
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 1rem;
+      z-index: 200;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 8px 14px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus {
+      top: 0.6rem;
     }
 
     /* GRID BACKGROUND */
@@ -71,6 +115,7 @@
       z-index: 100;
       padding: 1.1rem 0;
       background: rgba(10, 10, 12, 0.85);
+      -webkit-backdrop-filter: blur(12px);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -79,6 +124,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
     }
 
     .nav-name {
@@ -87,12 +133,20 @@
       color: var(--accent);
       letter-spacing: 0.06em;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .nav-right {
       display: flex;
       gap: 1.8rem;
       align-items: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-right::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-right a {
@@ -102,6 +156,7 @@
       transition: color 0.2s;
       font-family: 'JetBrains Mono', monospace;
       font-weight: 400;
+      white-space: nowrap;
     }
 
     .nav-right a:hover {
@@ -118,6 +173,7 @@
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .lang-btn:hover {
@@ -125,9 +181,25 @@
       border-color: var(--accent);
     }
 
+    @media (max-width: 560px) {
+      nav {
+        padding: 0.85rem 0;
+      }
+
+      .nav-right {
+        gap: 1rem;
+      }
+
+      .nav-right a {
+        font-size: 0.74rem;
+      }
+    }
+
     /* SECTIONS */
     section {
       padding: 110px 0 60px;
+      /* Evita que los títulos queden bajo el nav fijo al usar anclas */
+      scroll-margin-top: var(--nav-h);
     }
 
     section:first-of-type {
@@ -153,16 +225,6 @@
       height: 1px;
       background: var(--accent);
       opacity: 0.6;
-    }
-
-    /* SECTION TITLES */
-    .section-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.5rem;
-      font-family: 'Inter', sans-serif;
     }
 
     /* HERO */
@@ -236,6 +298,7 @@
       gap: 4rem;
       animation: slide 60s linear infinite;
       white-space: nowrap;
+      width: max-content;
     }
 
     .eq-track span {
@@ -339,17 +402,20 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .project-item:hover {
+    .project-item:hover,
+    .project-item:focus-within {
       padding-left: 0.8rem;
     }
 
-    .project-item:hover .project-expand {
+    .project-item:hover .project-expand,
+    .project-item:focus-within .project-expand {
       max-height: 120px;
       opacity: 1;
       margin-top: 0.8rem;
     }
 
-    .project-item:hover .project-name {
+    .project-item:hover .project-name,
+    .project-item:focus-within .project-name {
       color: var(--accent-bright);
     }
 
@@ -561,6 +627,7 @@
       aspect-ratio: 16 / 9;
       overflow: hidden;
       background: #000;
+      touch-action: pan-y;
     }
 
     .carousel-slide {
@@ -571,6 +638,11 @@
       transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
         transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
+    }
+
+    /* Dirección de entrada simétrica: con prev, el slide entra desde la izquierda */
+    .carousel-slide.enter-left {
+      transform: translateX(-40px) scale(0.98);
     }
 
     .carousel-slide.active {
@@ -584,11 +656,27 @@
       transform: translateX(-40px) scale(0.98);
     }
 
+    .carousel-slide.exit-right {
+      opacity: 0;
+      transform: translateX(40px) scale(0.98);
+    }
+
     .carousel-slide img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       display: block;
+    }
+
+    .slide-missing {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
     }
 
     /* Controls */
@@ -611,6 +699,7 @@
       border-radius: 50%;
       border: 1px solid var(--border);
       background: rgba(10, 10, 12, 0.75);
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       color: var(--text);
       font-family: 'JetBrains Mono', monospace;
@@ -729,13 +818,34 @@
         width: 24px;
       }
     }
+
+    /* Movimiento reducido: sin marquee, sin transiciones de slides */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .eq-track {
+        animation: none;
+      }
+
+      .carousel-slide {
+        transition: none;
+      }
+
+      .link-pill:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 
 <body>
 
+  <a class="skip-link" href="#hero" data-i18n="skip">Skip to content</a>
+
   <!-- NAV -->
-  <nav>
+  <nav aria-label="Main navigation">
     <div class="wrap">
       <div class="nav-name">oscar.painen</div>
       <div class="nav-right">
@@ -744,7 +854,7 @@
         <a href="#projects" data-i18n="nav_projects">projects</a>
         <a href="#thesis" data-i18n="nav_thesis">thesis</a>
         <a href="#contact" data-i18n="nav_contact">contact</a>
-        <button class="lang-btn" onclick="toggleLang()">es/en</button>
+        <button class="lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Cambiar idioma / Switch language">ES</button>
       </div>
     </div>
   </nav>
@@ -753,24 +863,27 @@
   <section id="hero">
     <div class="wrap">
       <div class="label">init</div>
-      <div class="hero-name">Oscar Painen</div>
+      <h1 class="hero-name">Oscar Painen</h1>
       <div class="hero-role">
-        Ing. Civil Matemático <span>/</span> Data <span>/</span> ML <span>/</span> Automation
+        <span data-i18n="hero_title">Mathematical Civil Engineer</span> <span aria-hidden="true">/</span> Data
+        <span aria-hidden="true">/</span> ML <span aria-hidden="true">/</span> Automation
       </div>
       <p class="hero-desc" data-i18n="hero_desc">
         👋 Hi, I'm a Mathematical Engineer specialized in Data and Computing. I automate processes, apply machine
         learning and build data-driven solutions to real problems.
       </p>
       <div class="hero-links">
-        <a href="https://github.com/OscarPainen" target="_blank" class="link-pill">github ↗</a>
-        <a href="https://www.linkedin.com/in/oscarpainenbriones/" target="_blank" class="link-pill">linkedin ↗</a>
+        <a href="https://github.com/OscarPainen" target="_blank" rel="noopener noreferrer" class="link-pill">github
+          ↗</a>
+        <a href="https://www.linkedin.com/in/oscarpainenbriones/" target="_blank" rel="noopener noreferrer"
+          class="link-pill">linkedin ↗</a>
         <a href="mailto:oscar.painenbriones@gmail.com" class="link-pill">email ↗</a>
       </div>
     </div>
   </section>
 
   <!-- EQ STRIP -->
-  <div class="eq-strip">
+  <div class="eq-strip" aria-hidden="true">
     <div class="eq-track">
       <span>C = S·N(d₁) − K·e⁻ʳᵀ·N(d₂)</span>
       <span>e^(iπ) + 1 = 0</span>
@@ -789,7 +902,7 @@
       <span>GridSearchCV(model, params, cv=5)</span>
       <span>H(X) = −Σ p(x) log₂ p(x)</span>
       <span>K(x,x') = exp(−‖x−x'‖²/2σ²)</span>
-      <!-- duplicate -->
+      <!-- duplicado para el loop del marquee -->
       <span>C = S·N(d₁) − K·e⁻ʳᵀ·N(d₂)</span>
       <span>e^(iπ) + 1 = 0</span>
       <span>y = β₀ + β₁x + ε</span>
@@ -850,7 +963,8 @@
             <div class="exp-date">2017 – 2024</div>
           </div>
           <p class="exp-desc" data-i18n="edu1_desc">Mathematical Modelling, Data Science and Computing. Graduated with
-            <strong>Máxima Distinción</strong>. Thesis: Quantum Computing applied to Finance and Predictive Models.</p>
+            <strong>Máxima Distinción</strong>. Thesis: Quantum Computing applied to Finance and Predictive Models.
+          </p>
         </div>
 
         <div class="exp-item">
@@ -859,7 +973,7 @@
               <div class="exp-role">Parallel Programming — OpenMP & MPI</div>
               <div class="exp-org">ETH Zürich · Online</div>
             </div>
-            <div class="exp-date">mar – ago 2023</div>
+            <div class="exp-date" data-i18n="edu2_date">mar – aug 2023</div>
           </div>
           <p class="exp-desc" data-i18n="edu2_desc">Mathematics and Computer Science. Full course in English.
             High-performance computing with OpenMP and MPI.</p>
@@ -921,7 +1035,8 @@
               </div>
             </div>
           </div>
-          <a href="https://github.com/OscarPainen/GPTSeguros" target="_blank" class="project-link">↗ repo</a>
+          <a href="https://github.com/OscarPainen/GPTSeguros" target="_blank" rel="noopener noreferrer"
+            class="project-link">↗ repo</a>
         </div>
 
         <div class="project-item">
@@ -940,7 +1055,8 @@
               </div>
             </div>
           </div>
-          <a href="https://github.com/OscarPainen/Report-InvoiceProject" target="_blank" class="project-link">↗ repo</a>
+          <a href="https://github.com/OscarPainen/Report-InvoiceProject" target="_blank" rel="noopener noreferrer"
+            class="project-link">↗ repo</a>
         </div>
 
         <div class="project-item">
@@ -958,7 +1074,8 @@
               </div>
             </div>
           </div>
-          <a href="https://github.com/OscarPainen/InvoiceProject" target="_blank" class="project-link">↗ repo</a>
+          <a href="https://github.com/OscarPainen/InvoiceProject" target="_blank" rel="noopener noreferrer"
+            class="project-link">↗ repo</a>
         </div>
 
         <div class="project-item">
@@ -976,7 +1093,8 @@
               </div>
             </div>
           </div>
-          <a href="https://github.com/OscarPainen/cafedinamarca" target="_blank" class="project-link">↗ repo</a>
+          <a href="https://github.com/OscarPainen/cafedinamarca" target="_blank" rel="noopener noreferrer"
+            class="project-link">↗ repo</a>
         </div>
 
         <div class="project-item">
@@ -994,8 +1112,8 @@
               </div>
             </div>
           </div>
-          <a href="https://github.com/OscarPainen/Mineria-de-Datos-IF1018" target="_blank" class="project-link">↗
-            repo</a>
+          <a href="https://github.com/OscarPainen/Mineria-de-Datos-IF1018" target="_blank" rel="noopener noreferrer"
+            class="project-link">↗ repo</a>
         </div>
 
       </div>
@@ -1005,7 +1123,7 @@
   <!-- THESIS / PRESENTATION CAROUSEL -->
   <section id="thesis">
     <div class="wrap">
-      <div class="label">thesis · presentation</div>
+      <div class="label" data-i18n="thesis_label">thesis · presentation</div>
       <div class="thesis-meta">
         <span><span class="key">title: </span><span class="val" data-i18n="thesis_title">Quantum Computing applied to
             Finance and Predictive Mathematical Models</span></span>
@@ -1013,25 +1131,25 @@
         <span><span class="key">distinction: </span><span class="val accent" data-i18n="thesis_dist">Máxima
             Distinción</span></span>
         <span><span class="key">year: </span><span class="val">2024</span></span>
-        <span><span class="key">topics: </span><span class="val">Quantum Computing · Finance · Predictive
-            Models</span></span>
+        <span><span class="key">topics: </span><span class="val" data-i18n="thesis_topics">Quantum Computing · Finance
+            · Predictive Models</span></span>
       </div>
 
-      <div class="carousel" id="carousel">
+      <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="Thesis slides">
         <div class="carousel-viewport" id="carousel-viewport">
-          <!-- Slides generated by JS -->
+          <!-- Slides generadas por JS -->
         </div>
         <div class="carousel-controls">
-          <button class="carousel-btn" id="prev-btn" aria-label="Previous">←</button>
-          <button class="carousel-btn" id="next-btn" aria-label="Next">→</button>
+          <button class="carousel-btn" id="prev-btn" aria-label="Previous slide">←</button>
+          <button class="carousel-btn" id="next-btn" aria-label="Next slide">→</button>
         </div>
-        <div class="carousel-progress" id="progress"></div>
+        <div class="carousel-progress" id="progress" aria-hidden="true"></div>
         <div class="carousel-bar">
-          <div class="carousel-counter">
+          <div class="carousel-counter" aria-live="polite">
             <span class="current" id="current-num">01</span> / <span id="total-num">15</span>
           </div>
-          <div class="carousel-dots" id="dots"></div>
-          <button class="carousel-play" id="play-btn">❚❚ pause</button>
+          <div class="carousel-dots" id="dots" role="tablist" aria-label="Slide navigation"></div>
+          <button class="carousel-play" id="play-btn" aria-pressed="true">❚❚ pause</button>
         </div>
       </div>
     </div>
@@ -1042,12 +1160,12 @@
     <div class="wrap">
       <div class="label">contact</div>
       <p class="contact-line" data-i18n="contact_p">
-        Open to <strong data-i18n="contact_roles">data analyst roles, remote work and collaborations</strong>. Reach out
-        anytime.
+        Open to <strong>data analyst roles, remote work and collaborations</strong>. Reach out anytime.
       </p>
       <div class="hero-links">
         <a href="mailto:oscar.painenbriones@gmail.com" class="link-pill">oscar.painenbriones@gmail.com ↗</a>
-        <a href="https://www.linkedin.com/in/oscarpainenbriones/" target="_blank" class="link-pill">linkedin ↗</a>
+        <a href="https://www.linkedin.com/in/oscarpainenbriones/" target="_blank" rel="noopener noreferrer"
+          class="link-pill">linkedin ↗</a>
       </div>
     </div>
   </section>
@@ -1056,40 +1174,55 @@
   <footer>
     <div class="wrap">
       <span>oscar painen · temuco, chile</span>
-      <span class="accent">2025</span>
+      <span class="accent" id="footer-year">2026</span>
     </div>
   </footer>
 
   <script>
     /* =====================================================
-       CAROUSEL LOGIC
+       CAROUSEL
        ===================================================== */
     const TOTAL_SLIDES = 15;
     const AUTOPLAY_MS = 6000;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const carouselEl = document.getElementById('carousel');
     const viewport = document.getElementById('carousel-viewport');
     const dotsContainer = document.getElementById('dots');
     const currentNum = document.getElementById('current-num');
     const totalNum = document.getElementById('total-num');
     const progressBar = document.getElementById('progress');
     const playBtn = document.getElementById('play-btn');
+
     let currentSlide = 0;
-    let autoplay = true;
+    // Con reduced-motion el autoplay parte desactivado
+    let autoplay = !prefersReducedMotion;
     let autoplayTimer = null;
     let progressTimer = null;
     let progressStart = 0;
 
-    // Generate slides
+    // Generar slides (la primera eager, el resto lazy; fallback si falta la imagen)
     for (let i = 1; i <= TOTAL_SLIDES; i++) {
       const num = String(i).padStart(2, '0');
       const slide = document.createElement('div');
       slide.className = 'carousel-slide' + (i === 1 ? ' active' : '');
-      slide.innerHTML = `<img src="slides/slide-${num}.png" alt="Slide ${i}" loading="lazy" />`;
+      const img = document.createElement('img');
+      img.src = `slides/slide-${num}.png`;
+      img.alt = `Thesis presentation, slide ${i} of ${TOTAL_SLIDES}`;
+      img.loading = i === 1 ? 'eager' : 'lazy';
+      img.decoding = 'async';
+      img.addEventListener('error', () => {
+        slide.innerHTML = `<div class="slide-missing">slide ${num} — image not found</div>`;
+      });
+      slide.appendChild(img);
       viewport.appendChild(slide);
 
       const dot = document.createElement('button');
       dot.className = 'carousel-dot' + (i === 1 ? ' active' : '');
+      dot.setAttribute('role', 'tab');
       dot.setAttribute('aria-label', `Go to slide ${i}`);
-      dot.addEventListener('click', () => goToSlide(i - 1));
+      dot.setAttribute('aria-selected', i === 1 ? 'true' : 'false');
+      dot.addEventListener('click', () => { goToSlide(i - 1, i - 1 > currentSlide ? 'next' : 'prev'); restartAutoplay(); });
       dotsContainer.appendChild(dot);
     }
     totalNum.textContent = String(TOTAL_SLIDES).padStart(2, '0');
@@ -1097,19 +1230,34 @@
     function goToSlide(index, direction = 'next') {
       const slides = viewport.querySelectorAll('.carousel-slide');
       const dots = dotsContainer.querySelectorAll('.carousel-dot');
-
-      slides[currentSlide].classList.remove('active');
-      if (direction === 'prev') slides[currentSlide].classList.add('exit-left');
-      dots[currentSlide].classList.remove('active');
+      const prev = currentSlide;
 
       currentSlide = (index + TOTAL_SLIDES) % TOTAL_SLIDES;
+      if (currentSlide === prev) return;
+
+      // Salida simétrica según dirección
+      slides[prev].classList.remove('active');
+      slides[prev].classList.add(direction === 'next' ? 'exit-left' : 'exit-right');
+      dots[prev].classList.remove('active');
+      dots[prev].setAttribute('aria-selected', 'false');
+
+      // Entrada desde el lado correcto
+      const incoming = slides[currentSlide];
+      incoming.classList.remove('exit-left', 'exit-right');
+      if (direction === 'prev') {
+        incoming.classList.add('enter-left');
+        // fuerza reflow para que la posición inicial se aplique antes de animar
+        void incoming.offsetWidth;
+      }
+      incoming.classList.add('active');
+      incoming.classList.remove('enter-left');
 
       setTimeout(() => {
-        slides.forEach(s => s.classList.remove('exit-left'));
+        slides.forEach(s => s.classList.remove('exit-left', 'exit-right'));
       }, 700);
 
-      slides[currentSlide].classList.add('active');
       dots[currentSlide].classList.add('active');
+      dots[currentSlide].setAttribute('aria-selected', 'true');
       currentNum.textContent = String(currentSlide + 1).padStart(2, '0');
 
       resetProgress();
@@ -1121,13 +1269,31 @@
     document.getElementById('next-btn').addEventListener('click', () => { nextSlide(); restartAutoplay(); });
     document.getElementById('prev-btn').addEventListener('click', () => { prevSlide(); restartAutoplay(); });
 
-    // Keyboard
+    // Teclado: solo cuando el carrusel es visible en pantalla
+    function carouselInView() {
+      const r = carouselEl.getBoundingClientRect();
+      return r.top < window.innerHeight * 0.8 && r.bottom > window.innerHeight * 0.2;
+    }
     document.addEventListener('keydown', (e) => {
+      if (!carouselInView()) return;
       if (e.key === 'ArrowRight') { nextSlide(); restartAutoplay(); }
       if (e.key === 'ArrowLeft') { prevSlide(); restartAutoplay(); }
     });
 
-    // Autoplay + progress
+    // Swipe táctil
+    let touchX = null;
+    viewport.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) {
+        dx < 0 ? nextSlide() : prevSlide();
+        restartAutoplay();
+      }
+      touchX = null;
+    }, { passive: true });
+
+    // Autoplay + progreso
     function startAutoplay() {
       stopAutoplay();
       progressStart = Date.now();
@@ -1154,72 +1320,105 @@
       if (autoplay) { stopAutoplay(); startAutoplay(); }
     }
 
+    function syncPlayBtn() {
+      playBtn.textContent = autoplay ? i18n[lang].play_pause : i18n[lang].play_play;
+      playBtn.setAttribute('aria-pressed', String(autoplay));
+    }
+
     playBtn.addEventListener('click', () => {
       autoplay = !autoplay;
-      if (autoplay) { playBtn.textContent = '❚❚ pause'; startAutoplay(); }
-      else { playBtn.textContent = '▶ play'; stopAutoplay(); }
+      syncPlayBtn();
+      autoplay ? startAutoplay() : stopAutoplay();
     });
 
-    // Pause on hover
-    const carouselEl = document.getElementById('carousel');
+    // Pausa al pasar el mouse
     carouselEl.addEventListener('mouseenter', () => { if (autoplay) stopAutoplay(); });
     carouselEl.addEventListener('mouseleave', () => { if (autoplay) startAutoplay(); });
 
-    startAutoplay();
+    // Pausa cuando la pestaña está oculta
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAutoplay();
+      else if (autoplay) startAutoplay();
+    });
+
+    if (autoplay) startAutoplay();
 
     /* =====================================================
        I18N
        ===================================================== */
     const i18n = {
       en: {
+        skip: 'Skip to content',
         nav_about: 'about', nav_projects: 'projects', nav_thesis: 'thesis', nav_contact: 'contact',
+        hero_title: 'Mathematical Civil Engineer',
         hero_desc: '👋 Hi, I\'m a Mathematical Engineer specialized in Data and Computing. I automate processes, apply machine learning and build data-driven solutions to real problems.',
         about_p1: 'Mathematical Civil Engineer specialized in Data and Computing. I graduated with <strong>Máxima Distinción</strong> presenting a thesis on <strong>Quantum Computing, Finance and Predictive Mathematical Models</strong>, while participating in ML and data analysis projects across university departments.',
         about_p2: 'I\'ve built data-driven solutions, AI-powered automation and analytical tools in academic and organizational contexts. Currently leading <strong>Smart Campus</strong> initiatives at Universidad Católica de Temuco — integrating IoT, PostgreSQL and multi-source data pipelines to improve institutional decision-making.',
         about_p3: 'I enjoy solving complex problems — the kind that keep you up at night. I think while walking. I\'ve contributed to social volunteering projects across multiple countries, which sharpened my adaptability, teamwork and cross-cultural communication. I aspire to work at the intersection of <strong>technology, finance and social impact</strong>.',
         edu1_desc: 'Mathematical Modelling, Data Science and Computing. Graduated with <strong>Máxima Distinción</strong>. Thesis: Quantum Computing applied to Finance and Predictive Models.',
         edu2_desc: 'Mathematics and Computer Science. Full course in English. High-performance computing with OpenMP and MPI.',
+        edu2_date: 'mar – aug 2023',
         p1_desc: 'Automated insurance quoter for 8 Chilean insurers. Selenium + Django REST API.',
         p2_desc: 'EDA on university energy consumption. Anomaly detection and smart meter validation.',
         p3_desc: 'PDF invoice extraction via Google Drive OCR + Apps Script. Zero manual entry.',
         p4_desc: 'Full-stack café management: POS, inventory, staff and real-time dashboard.',
         p5_desc: 'Classification, clustering and predictive modeling on real datasets.',
+        thesis_label: 'thesis · presentation',
         thesis_title: 'Quantum Computing applied to Finance and Predictive Mathematical Models',
         thesis_dist: 'Máxima Distinción',
+        thesis_topics: 'Quantum Computing · Finance · Predictive Models',
         contact_p: 'Open to <strong>data analyst roles, remote work and collaborations</strong>. Reach out anytime.',
+        play_pause: '❚❚ pause', play_play: '▶ play',
+        lang_btn: 'ES'
       },
       es: {
+        skip: 'Ir al contenido',
         nav_about: 'sobre mí', nav_projects: 'proyectos', nav_thesis: 'tesis', nav_contact: 'contacto',
+        hero_title: 'Ing. Civil Matemático',
         hero_desc: '👋 Hola, soy Ingeniero Matemático especializado en Data y Computación. Automatizo procesos, aplico machine learning y construyo soluciones basadas en datos a problemas reales.',
         about_p1: 'Ingeniero Civil Matemático especializado en Data y Computación. Me gradué con <strong>Distinción Máxima</strong> presentando una tesis en <strong>Computación Cuántica, Finanzas y Modelos Matemáticos Predictivos</strong>, mientras participaba en proyectos de ML y análisis de datos en distintos departamentos universitarios.',
         about_p2: 'He desarrollado soluciones basadas en datos, automatización con IA y herramientas analíticas en contextos académicos y organizacionales. Actualmente lidero iniciativas de <strong>Smart Campus</strong> en la Universidad Católica de Temuco — integrando IoT, PostgreSQL y pipelines de datos para mejorar la toma de decisiones institucional.',
         about_p3: 'Disfruto resolver problemas complejos, de esos que no te dejan dormir. Me gusta pensar y meditar mientras camino. He participado en proyectos de voluntariado en distintos países, lo que fortaleció mi adaptabilidad, trabajo en equipo y comunicación intercultural. Aspiro a trabajar en la intersección de <strong>tecnología, finanzas e impacto social</strong>.',
         edu1_desc: 'Modelamiento Matemático, Data Science y Computación. Graduado con <strong>Distinción Máxima</strong>. Tesis: Computación Cuántica aplicada a Finanzas y Modelos Predictivos.',
         edu2_desc: 'Matemáticas y Ciencias de la Computación. Curso completo en inglés. Computación de alto rendimiento con OpenMP y MPI.',
+        edu2_date: 'mar – ago 2023',
         p1_desc: 'Cotizador automatizado de seguros para 8 aseguradoras chilenas. Selenium + API REST Django.',
         p2_desc: 'EDA sobre consumo energético universitario. Detección de anomalías y validación de medidores.',
         p3_desc: 'Extracción de facturas PDF con OCR de Google Drive + Apps Script. Cero entrada manual.',
         p4_desc: 'Sistema de gestión para cafetería: POS, inventario, personal y dashboard en tiempo real.',
         p5_desc: 'Clasificación, clustering y modelado predictivo con datasets reales.',
+        thesis_label: 'tesis · presentación',
         thesis_title: 'Computación Cuántica aplicada a Finanzas y Modelos Matemáticos Predictivos',
         thesis_dist: 'Distinción Máxima',
+        thesis_topics: 'Computación Cuántica · Finanzas · Modelos Predictivos',
         contact_p: 'Abierto a <strong>roles de analista de datos, trabajo remoto y colaboraciones</strong>. Escríbeme cuando quieras.',
+        play_pause: '❚❚ pausa', play_play: '▶ reproducir',
+        lang_btn: 'EN'
       }
     };
 
     let lang = (navigator.language || 'en').startsWith('es') ? 'es' : 'en';
+    const langBtn = document.getElementById('lang-btn');
 
     function applyLang(l) {
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const k = el.getAttribute('data-i18n');
         if (i18n[l][k] !== undefined) el.innerHTML = i18n[l][k];
       });
+      // El atributo lang del documento debe reflejar el idioma activo
+      document.documentElement.lang = l;
+      // El botón muestra el idioma DESTINO
+      langBtn.textContent = i18n[l].lang_btn;
+      syncPlayBtn();
     }
 
     function toggleLang() {
       lang = lang === 'en' ? 'es' : 'en';
       applyLang(lang);
     }
+
+    // Año dinámico en el footer
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
     applyLang(lang);
   </script>
